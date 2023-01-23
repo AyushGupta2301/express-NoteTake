@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.container
+        if message.length
+            h4.alert.alert-danger= message
+        .row
+            .col-sm-6.col-md-4.col-md-offset-4
+                h1.text-center.login-title Create an account
+                form.form-signin(method="post")
+                        input.form-control(type='text', placeholder='Name', required='', autofocus='', name="name")
+                        br
+                        input.form-control(type='text', placeholder='Username', required='',name="username" autocomplete="off")
+                        br
+                        input.form-control(type='password', placeholder='Password', required='',name="password")
+                        br
+                        input.form-control(type='password', placeholder='Confirm Password', required='',name="cnfpassword")
+                        br
+                        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in

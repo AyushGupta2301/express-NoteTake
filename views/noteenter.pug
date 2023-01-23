@@ -1,0 +1,16 @@
+extends layout 
+
+block content
+    div.container
+        //- if message.length
+        //-     h4.alert.alert-danger= message
+        .row
+            .col-sm-6.col-md-6.col-md-offset-3
+                h1.text-center.login-title Enter Your Note
+                form.form-signin(method="post")
+                        input.form-control(type='text', placeholder='Title', required='', autofocus='', name="title")
+                        br
+                        textarea.form-control(placeholder='Enter your note here...', required='',name="note" autocomplete="off", rows=20)
+                        br 
+                        button.btn.btn-block.btn-primary(type="submit") Submit
+                        

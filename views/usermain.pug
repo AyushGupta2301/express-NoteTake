@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  
+  h1= titleMsg
+  h3 Your Notes:
+  ul.list-group
+    each note in noteList
+      li.list-group-item 
+        a(href = "/notes/" + note._id)= note.title
+  input(type="file" id="importFile")  
+  button.btn.btn-primary(id="importBtn") Import
+
+block pagescripts
+  script(src = "/javascripts/import/import.js")

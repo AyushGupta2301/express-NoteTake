@@ -1,0 +1,27 @@
+extends layout 
+
+
+block content
+    div.container
+        //- if message.length
+        //-     h4.alert.alert-danger= message
+        .row
+            .col-sm-6.col-md-6.col-md-offset-3
+                h1.text-center.login-title 
+                form.form-signin(method="post")
+                        h4 Title
+                        input.form-control(type='text', value= note.title, required='', autofocus='off', name="title")
+                        br
+                        h4 Modified
+                        input.form-control(type='text', value= note.timestamp, required='', autofocus='off', name="", readonly= "true")
+                        br
+                        h4 Note
+                        textarea.form-control(required='',name="note" autocomplete="off", rows=20)= note.note
+                        input(type='text', value= note._id, required='', autofocus='off', name="noteid", hidden= "true")
+                        .col-sm-6 
+                            button.btn.btn-block.btn-primary(type="submit") Save Edits
+                        .col-sm-6                        
+                            a.btn.btn-block.btn-default(href="./delete/"+note._id) Delete
+                            br
+                        .col-sm-6.col-md-offset-3                        
+                            a.btn.btn-block.btn-default(href="./export/"+note._id) Export 

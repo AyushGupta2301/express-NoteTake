@@ -1,0 +1,2 @@
+--> sudo docker run -p 127.0.0.1:8080:8080 --> will run the container with port 8080 exposed as localhost:8080 of host machine
+--> jenkins/jenkins:latest is a pre-built image which can be pulled and it can give you a pre-built jenkins install

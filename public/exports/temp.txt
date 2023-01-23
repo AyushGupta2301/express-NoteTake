@@ -1,0 +1,13 @@
+--> sudo docker run -p 127.0.0.1:8080:8080 --> will run the container with port 8080 exposed as localhost:8080 of host machine
+--> jenkins/jenkins:latest is a pre-built image which can be pulled, and it can give you a pre-built Jenkins install
+
+--> Docker does not require OS image.
+--> Docker enables the containerization of ENVIRONMENT and the application.
+--> Jenkins is used as a build tool, when you want to share the application but not it's source code. Output of the Jenkins build is called artifact (product of a build pipeline). 
+--> Docker daemon is the interface between OS and the application environment.
+--> Continuous integration is a process in which we will automate the test and build process as soon as the source code is modified. Thus, we require watchers to watch for changes (Git actions on GitHub).
+--> Continuous development is the process when an artifact is deployed automatically. 
+--> Biggest problem in DevOps is the number of tools to learn to deploy a single application.
+--> Containerization is done of the 'artifact'.
+--> When there are multiple docker image instances, then we require orchestration (Kubernetes).
+--> In case of distributed servers, message brokers like RabbitMQ can be used.
