@@ -22,8 +22,9 @@ module.exports = new class{
         try{
             const Note = await NoteDataAccess.getNote(NoteID);
             const NoteData = Note[0].note;
-            if(NoteExports.writeAsText(Note[0].title,String(NoteData))){
-                res.sendFile('temp.txt',{root: './public/exports'});
+            if(!NoteExports.writeAsText(Note[0].title,String(NoteData))){
+                // res.sendFile('temp.txt',{root: './public/exports'});
+                throw new Error("Exporting error");
             }
         }catch(err){
             console.log(err);
