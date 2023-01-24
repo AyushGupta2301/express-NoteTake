@@ -9,7 +9,7 @@ const session = require('express-session')
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MongoSrvURI).then((res)=>{
+mongoose.connect(process.env.MongoURI).then((res)=>{
   console.log("Connected to Database");
 });
 
