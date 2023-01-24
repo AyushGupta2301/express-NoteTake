@@ -20,7 +20,7 @@ module.exports = new class{
         const UserID = req.session.uid;
         try{
             const User = await NoteDataAccess.getUser(UserID);
-            const NoteList = await NoteDataAccess.getAllUserNotes(User[0]._id);
+            const NoteList = await NoteDataAccess.getAllUserNotes(User[0].key);
             res.render('usermain',{titleMsg: "Welcome " + User[0].name, noteList: NoteList});
         }catch(err){
             console.log(err);
@@ -32,7 +32,7 @@ module.exports = new class{
         const User = req.body;
         try{
             const newUser = await NoteDataAccess.createUser(User);
-            res.json({message: "NEW USER INSERTED", uid: newUser._id});
+            res.json({message: "NEW USER INSERTED", uid: newUser.key});
             res.end();
         }
         catch(err){
