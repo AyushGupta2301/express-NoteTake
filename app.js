@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +9,7 @@ const session = require('express-session')
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://127.0.0.1:27017/notesDB").then((res)=>{
+mongoose.connect(process.env.MongoURI).then((res)=>{
   console.log("Connected to Database");
 });
 
@@ -25,7 +26,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(session({ secret: 'ayushisaverygoodboy', resave: true, saveUninitialized: true}));
+app.use(session({ secret: process.env.SessionKey, resave: true, saveUninitialized: true}));
 app.use(logger('dev'));
 app.use(express.json()); //puts the JS object corresponding to the incoming JSON to the req.body
 app.use(express.urlencoded({ extended: false }));
