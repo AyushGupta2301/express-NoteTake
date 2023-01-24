@@ -1,4 +1,4 @@
-const NoteDataAccess = require('../data-access/NoteAccess');
+const NoteDataAccess = require('../data-access/NoteAccessDeta');
 
 module.exports = new class{
     async user_get(req,res){
@@ -6,7 +6,7 @@ module.exports = new class{
         try{
             const User = await NoteDataAccess.getUser(UserID);
             // console.log(User);
-            const NoteList = await NoteDataAccess.getAllUserNotes(User[0]._id);
+            const NoteList = await NoteDataAccess.getAllUserNotes(User[0].key);
             var welcomeMsgs = ["Good Day, ", "Looking Productive, ", "Welcome Back, ", "Hey ", "Glad to help, ", "Glad to see you again, ", "Did you eat, ", "How've you been, ","I've got you, ","Can I help, "];
             res.render('usermain',{titleMsg: welcomeMsgs[Math.floor(Math.random()*welcomeMsgs.length)] + User[0].name, noteList: NoteList});
         }

@@ -1,5 +1,5 @@
 const path  = require('path');
-const NoteDataAccess = require('../data-access/NoteAccess');
+const NoteDataAccess = require('../data-access/NoteAccessDeta');
 const NoteExports = require('../io/note-exporter');
 
 module.exports = new class{
@@ -7,7 +7,7 @@ module.exports = new class{
         const NoteID = req.params.rid;
         try{
             const Note = await NoteDataAccess.getNote(NoteID);
-            const Noteobj = {timestamp: String(Note[0].timestamp), title: Note[0].title, note: Note[0].note, _id: Note[0]._id}
+            const Noteobj = {timestamp: Note[0].timestamp, title: Note[0].title, note: Note[0].note, key: Note[0].key}
             // console.log(Noteobj.timestamp);
         
             res.render('noteview', {note: Noteobj});

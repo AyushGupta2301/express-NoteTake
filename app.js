@@ -7,11 +7,11 @@ var logger = require('morgan');
 const session = require('express-session')
 
 
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MongoSrvURI).then((res)=>{
-  console.log("Connected to Database");
-});
+// const mongoose = require('mongoose');
+// mongoose.set('strictQuery', true);
+// mongoose.connect(process.env.MongoURI).then((res)=>{
+//   console.log("Connected to Database");
+// });
 
 // var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

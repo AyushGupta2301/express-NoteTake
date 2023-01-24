@@ -7,7 +7,7 @@ block content
   ul.list-group
     each note in noteList
       li.list-group-item 
-        a(href = "/notes/" + note._id)= note.title
+        a(href = "/notes/" + note.key)= note.title
   h3 Import Notes (only .txt files supported):
   input(type="file" id="importFile")  
   button.btn.btn-primary(id="importBtn") Import

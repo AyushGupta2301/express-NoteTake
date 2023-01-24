@@ -5,6 +5,7 @@ const UserNoteCntrl = require('../controllers/note-controller');
 router.use((req,res,next)=>{
     // console.log(req.session.uid);
     if(!req.session.uid){
+        // console.log("route se mod diya");
         res.redirect('/login');
     }
     else{

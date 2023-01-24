@@ -1,4 +1,4 @@
-const NoteDataAccess = require('../data-access/NoteAccess');
+const NoteDataAccess = require('../data-access/NoteAccessDeta');
 
 
 module.exports = new class{
