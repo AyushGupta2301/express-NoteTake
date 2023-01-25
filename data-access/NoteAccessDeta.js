@@ -51,11 +51,12 @@ module.exports = new class{
         return await db.put(newUser);
     }
 
-    async updateNote(NoteKey,Note){
+    async updateNote(NoteKey,UserKey,Note){
         const newNote = {
             key: NoteKey,
             timestamp: String(new Date()),
             title: Note.title,
+            userid: UserKey,
             note: Note.note
         }
         return await db.put(newNote);

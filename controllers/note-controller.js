@@ -50,9 +50,10 @@ module.exports = new class{
 
     async note_update(req,res){
         const Note = req.body;
+        const UserKey = req.session.uid;
         const updatedNote = {title: Note.title, note:Note.note};
         try{
-            const updateStatus = await NoteDataAccess.updateNote(Note.noteid,updatedNote);
+            const updateStatus = await NoteDataAccess.updateNote(Note.noteid,UserKey,updatedNote);
             res.redirect('/notes/'+Note.noteid);
         } catch(err){
             res.status(400).send("ERROR WHILE UPDATING NOTE");
