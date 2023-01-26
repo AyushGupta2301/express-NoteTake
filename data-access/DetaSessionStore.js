@@ -1,0 +1,2 @@
+const Deta = require('deta');
+
