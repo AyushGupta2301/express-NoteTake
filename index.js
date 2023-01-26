@@ -5,7 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+// const MongoStore = require('connect-mongo');
+const DetaStore = require('./data-access/DetaSessionStore');
+
 
 // var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,7 +22,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(session({ secret: "ayushisaverygoodboy", store: MongoStore.create({mongoUrl: "mongodb+srv://admin:1357@cluster0.qbbwc.mongodb.net/sessions?retryWrites=true&w=majority"})}));
+app.use(session({ secret: "ayushisaverygoodboy", store: DetaStore.create({projectKey: "d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ", dbName: "session"}), resave: true, saveUninitialized: true}));
 app.use(logger('dev'));
 app.use(express.json()); //puts the JS object corresponding to the incoming JSON to the req.body
 app.use(express.urlencoded({ extended: false }));
