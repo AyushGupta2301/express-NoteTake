@@ -14,7 +14,7 @@ router.use((req,res,next)=>{
   }
 });
 
-router.get('/', UserNoteCntrl.user_page_get)
+router.get('/', UserNoteCntrl.user_page_get);
 router.get('/:rid', UserNoteCntrl.user_get);
 router.post('/', UserNoteCntrl.user_post);
 
