@@ -7,9 +7,10 @@ module.exports = new class{
         const NoteID = req.params.rid;
         try{
             const Note = await NoteDataAccess.getNote(NoteID);
+            if(Note[0].userid !== req.session.uid){
+                throw new Error("Unauthorized User");
+            }
             const Noteobj = {timestamp: Note[0].timestamp, title: Note[0].title, note: Note[0].note, key: Note[0].key}
-            // console.log(Noteobj.timestamp);
-        
             res.render('noteview', {note: Noteobj});
         }
         catch(err){
