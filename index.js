@@ -22,7 +22,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(session({ secret: "ayushisaverygoodboy", store: DetaStore.create({projectKey: "d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ", dbName: "session"}), resave: true, saveUninitialized: true}));
+app.use(session({ secret: "ayushisaverygoodboy", store: DetaStore.create({projectKey: "d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ", dbName: "session"}), resave: true, saveUninitialized: false}));
 app.use(logger('dev'));
 app.use(express.json()); //puts the JS object corresponding to the incoming JSON to the req.body
 app.use(express.urlencoded({ extended: false }));
