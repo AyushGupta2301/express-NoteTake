@@ -15,7 +15,7 @@ module.exports = function(){
                 const NoteList = await NoteDataAccess.getAllUserNotes(User[0].key);
                 NoteList.sort(sortLogic);
                 var welcomeMsgs = ["Good Day, ", "Looking Productive, ", "Welcome Back, ", "Hey ", "Glad to help, ", "Glad to see you again, ", "Did you eat, ", "How've you been, ","I've got you, ","Can I help, "];
-                res.render('usermain',{titleMsg: welcomeMsgs[Math.floor(Math.random()*welcomeMsgs.length)] + User[0].name, noteList: NoteList});
+                res.render('usermain',{titleMsg: welcomeMsgs[Math.floor(Math.random()*welcomeMsgs.length)] + User[0].name, noteList: NoteList, pageTitle: User[0].name + "'s notes"});
             }
             catch(err){
                 console.log(err);

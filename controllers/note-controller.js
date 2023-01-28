@@ -46,7 +46,7 @@ module.exports = new class{
     }
 
     async note_page_get(req,res){
-        res.render('noteenter');
+        res.render('noteenter',{pageTitle: "Enter Note"});
     }
 
     async note_update(req,res){

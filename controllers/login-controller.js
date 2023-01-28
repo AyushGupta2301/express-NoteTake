@@ -3,7 +3,7 @@ const NoteDataAccess = require('../data-access/NoteAccessDeta');
 module.exports = new class{
     async login_get(req,res){
         try{
-            res.render('login', {message: ""});
+            res.render('login', {message: "", pageTitle: "Login"});
         }catch(err){
             res.status(400).send("INTERNAL SERVER ERROR");
         }
