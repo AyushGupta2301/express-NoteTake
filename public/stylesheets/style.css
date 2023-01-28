@@ -1,4 +1,6 @@
 body {
+  background-image: url('../images/newbg.png');
+  background-size: 100px 100px;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -6,3 +8,4 @@ body {
 a {
   color: #00B7FF;
 }
+

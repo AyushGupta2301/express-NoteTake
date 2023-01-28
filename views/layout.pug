@@ -10,6 +10,8 @@ html(lang="en")
         link(rel='stylesheet', href='/stylesheets/style.css')
         if note
             title= note.title
+        else 
+            title= pageTitle
     body.container 
         include nav.pug
 
