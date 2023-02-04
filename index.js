@@ -19,6 +19,8 @@ const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const signupRouter = require('./routes/signup');
 const importRouter = require('./routes/import');
+const exportRouter = require('./routes/export');
+
 
 var app = express();
 
@@ -40,6 +42,8 @@ app.use('/notes', notesRouter);
 app.use('/logout',logoutRouter);
 app.use('/signup',signupRouter);
 app.use('/import',importRouter);
+app.use('/export',exportRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
