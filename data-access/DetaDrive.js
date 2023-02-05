@@ -1,6 +1,6 @@
 const Deta = require('deta').Deta;
-const deta = Deta("d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ");
-
+require('dotenv').config();
+const deta = Deta(process.env.detaProjectKey);
 const files = deta.Drive("sample_folder");
 
 // Testing

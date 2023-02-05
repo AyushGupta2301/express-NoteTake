@@ -4,30 +4,29 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require('express-session')
+const session = require('express-session');
+const DetaStore = require('./data-access/DetaSessionStore');
+const favicon = require('serve-favicon');
 
 
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MongoURI).then((res)=>{
-  console.log("Connected to Database");
-});
 
-// var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const notesRouter = require('./routes/notes');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const signupRouter = require('./routes/signup');
 const importRouter = require('./routes/import');
+const exportRouter = require('./routes/export');
+
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(session({ secret: process.env.SessionKey, resave: true, saveUninitialized: true}));
-app.use(logger('dev'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(session({ secret: process.env.sessionKey, store: DetaStore.create({projectKey: process.env.detaProjectKey, dbName: "session"}), resave: true, saveUninitialized: false}));
+app.use(logger('short'));
 app.use(express.json()); //puts the JS object corresponding to the incoming JSON to the req.body
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -40,6 +39,8 @@ app.use('/notes', notesRouter);
 app.use('/logout',logoutRouter);
 app.use('/signup',signupRouter);
 app.use('/import',importRouter);
+app.use('/export',exportRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

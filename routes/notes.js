@@ -18,6 +18,5 @@ router.post('/:rid',UserNoteCntrl.note_update);
 router.post('/',UserNoteCntrl.note_post);
 router.get('/',UserNoteCntrl.note_page_get);
 router.get('/delete/:rid',UserNoteCntrl.note_delete);
-router.get('/export/:rid',UserNoteCntrl.export_note);
 
 module.exports = router;

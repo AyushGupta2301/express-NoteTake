@@ -1,8 +1,11 @@
-const models = require('../models');
+// const models = require('../models');
 const { Deta } = require('deta');
+require('dotenv').config();
 
-const deta = Deta("d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ");
+const deta = Deta(process.env.detaProjectKey);
 const db = deta.Base("notesDB");
+
+// Test
 // (async ()=>{
 //     const newNote = {
 //         timestamp: String(new Date()),
@@ -16,6 +19,7 @@ const db = deta.Base("notesDB");
 // })();
 
 module.exports = new class{
+
     async getAllUserNotes(UserKey){
         return (await db.fetch({userid: UserKey})).items;
     }
@@ -23,6 +27,7 @@ module.exports = new class{
     async getNote(NoteKey){
         return (await db.fetch({key: NoteKey})).items; 
     }
+    
     async getUser(UserKey){
         return (await db.fetch({key: UserKey})).items;
     }

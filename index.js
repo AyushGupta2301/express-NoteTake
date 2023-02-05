@@ -2,17 +2,15 @@ require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan'); 
+// removing morgan in production
 const session = require('express-session');
-// const MongoStore = require('connect-mongo');
 const DetaStore = require('./data-access/DetaSessionStore');
 const favicon = require('serve-favicon');
 
 
 
-
-// var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const notesRouter = require('./routes/notes');
 const loginRouter = require('./routes/login');
@@ -28,11 +26,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(session({ secret: "ayushisaverygoodboy", store: DetaStore.create({projectKey: "d0wpxns6_c2HAWHsQD8c3dKenNJjPpSYghjWNX8jJ", dbName: "session"}), resave: true, saveUninitialized: false}));
-app.use(logger('dev'));
+app.use(session({ secret: process.env.sessionKey, store: DetaStore.create({projectKey: process.env.detaProjectKey, dbName: "session"}), resave: true, saveUninitialized: false}));
+// app.use(logger('short'));
+// removing morgan in production
 app.use(express.json()); //puts the JS object corresponding to the incoming JSON to the req.body
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/',loginRouter);

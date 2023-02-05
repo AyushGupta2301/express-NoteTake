@@ -18,33 +18,6 @@ module.exports = new class{
         }
     }
 
-    async export_note(req,res){
-        const NoteID = req.params.rid;
-        try{
-            const Note = await NoteDataAccess.getNote(NoteID);
-            const NoteData = Note[0].note;
-            if(!NoteExports.writeAsText(Note[0].title,String(NoteData))){
-                // res.sendFile('temp.txt',{root: './public/exports'});
-                throw new Error("Exporting error");
-            }
-        }catch(err){
-            console.log(err);
-            res.status(400).send("ERROR WHILE EXPORTING THE NOTE");
-        }
-    }
-
-    async import_note(req,res){
-        const FileData = req.body;
-        const FileBlobStr = FileData.blob;
-        const FileName = FileData.filename;
-        try{
-            const newNote = {title: FileData.filename, timestamp: FileData.lastmodified, note: FileData.note};
-        }catch(err){
-            console.log(err);
-            res.status(400).send("ERROR WHILE EXPORTING THE NOTE");
-        }
-    }
-
     async note_page_get(req,res){
         res.render('noteenter',{pageTitle: "Enter Note"});
     }
