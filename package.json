@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "debug": "~4.3.4",
     "deta": "^1.1.0",
     "dotenv": "^16.0.3",
