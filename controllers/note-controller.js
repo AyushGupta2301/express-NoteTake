@@ -14,11 +14,11 @@ module.exports = new class{
             res.render('noteview', {note: Noteobj});
         }
         catch(err){
-            res.status(400).send("INTERNAL SERVER ERROR");
+            res.status(400).send("ERROR GETTING NOTE");
         }
     }
 
-    async note_page_get(req,res){
+    async note_enter(req,res){
         res.render('noteenter',{pageTitle: "Enter Note"});
     }
 

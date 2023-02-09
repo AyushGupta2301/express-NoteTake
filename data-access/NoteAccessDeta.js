@@ -24,6 +24,19 @@ module.exports = new class{
         return (await db.fetch({userid: UserKey})).items;
     }
 
+    getAllUserNotesGen(){
+        return (async function*(UserKey){
+            var nextChunk = await db.fetch({userid: UserKey},{limit: 1});
+            var currLast = nextChunk.last;
+            while(currLast){
+                yield Buffer.from(nextChunk.items[0].note);
+                nextChunk = await db.fetch({userid: UserKey},{limit: 1, last: currLast});
+                currLast = nextChunk.last;
+            }
+            yield Buffer.from(nextChunk.items[0].note);
+        });
+    }
+
     async getNote(NoteKey){
         return (await db.fetch({key: NoteKey})).items; 
     }
