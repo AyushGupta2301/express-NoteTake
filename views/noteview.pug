@@ -6,25 +6,30 @@ block content
         //- if message.length
         //-     h4.alert.alert-danger= message
         .row
-            .col-sm-6.col-md-6.col-md-offset-3
+            .col-sm-12.col-md-12
                 h1.text-center.login-title 
                 form.form-signin(method="post")
-                        h4 Title
-                        input.form-control(type='text', value= note.title, required='', autofocus='off', name="title")
-                        br
-                        h4 Modified
-                        input.form-control(type='text', value= note.timestamp, required='', autofocus='off', name="", readonly= "true")
-                        br
-                        h4 Note
-                        textarea.form-control(required='',name="note" autocomplete="off", rows=20)= note.note
+                        //- .panel.panel-primary
+                        //-     .panel-heading
+                        //-         .panel-title Title
+                        //- br
+                        .panel.panel-primary
+                            .panel-heading
+                                .panel-title
+                                    input(type='text', value= note.title, required='', autofocus='off', name="title", style="background-color:inherit; color:inherit; border:none; padding:0px; outline:none; width:100%;")
+                            textarea.form-control.panel-body(required='',name="note" autocomplete="off", rows=35)= note.note
+                            .panel-footer(style="opacity:0.5;")= "Last Modified on " + note.timestamp
+                        //- br
+                        //- .panel.panel-primary
+                        //-     .panel-heading
+                        //-         .panel-title Modified
+                        //-     input.form-control.panel-body(type='text', value= note.timestamp, required='', autofocus='off', name="", readonly= "true")
                         input(type='text', value= note.key, required='', autofocus='off', name="noteid", hidden="true")
-                        br
-                        .col-sm-6 
+                        .col-sm-3 
                             button.btn.btn-block.btn-primary(type="submit") Save Edits
-                        .col-sm-6                        
+                        .col-sm-3                        
                             a.btn.btn-block.btn-danger(href="./delete/"+note.key) Delete
-                            br
-                        .col-sm-6.col-md-offset-3                        
+                        .col-sm-3                      
                             a.btn.btn-block.btn-default(id="exportBtn", href="../export/"+note.key, target="_blank")
                                 svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 16 16' width='16' height='16')
                                     path(d='M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z')

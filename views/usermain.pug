@@ -1,14 +1,21 @@
 extends layout
 
 block content
-  
+  -var letters = []
+  -for(let i=65;i<65+26;i++){letters[i] = false}
   h1= titleMsg
   h3 Your Notes:
-  ul.list-group
+  .list-group
     each note in noteList
-      li.list-group-item 
-        a(href = "/notes/" + note.key)= note.title
-  
+      if(!letters[note.title[0].toUpperCase().charCodeAt(0)])
+        -letters[note.title[0].toUpperCase().charCodeAt(0)]= true
+        .input-group
+          span.input-group-addon= note.title[0].toUpperCase()  
+          a.list-group-item.list-group-item-info(href = "/notes/" + note.key)= note.title
+      else
+          .input-group
+            span.input-group-addon  
+            a.list-group-item.list-group-item-info(href = "/notes/" + note.key)= note.title
   a.btn.btn-primary(href="/notes") + Add New Note
   h3 Import Notes (only .txt files supported):
   input(type="file" id="importFile")  
