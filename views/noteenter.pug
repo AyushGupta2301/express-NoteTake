@@ -6,13 +6,13 @@ block content
         //-     h4.alert.alert-danger= message
         .row
             .col-sm-12.col-md-12
-                h1.text-center.login-title Enter Your Note
+                h1.text-center.login-title
                 form.form-signin(method="post")
-                        .panel.panel-info
+                        .panel.panel-default
                             .panel-heading
                                 .panel-title
-                                    input(type='text', placeholder='Enter Your Title Here and Note down below...', required='', autofocus='off', name="title", style="background-color:inherit; color:inherit; border:none; padding:0px; outline:none; width:100%;")
-                            textarea.form-control.panel-body(placeholder='Enter Your Note...',name="note", autocomplete="off", rows=35) 
+                                    input(type='text', placeholder='Enter Your Title Here', required='', autofocus='off', name="title", style="background-color:inherit; color:inherit; border:none; padding:0px; outline:none; width:100%;")
+                            textarea.form-control.panel-body(placeholder='Enter Your Note...',name="note", autocomplete="off", rows=35)
                         .col-sm-4.col-md-offset-4
                             button.btn.btn-block.btn-primary(type="submit") Submit
                         
