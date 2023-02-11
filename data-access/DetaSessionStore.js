@@ -21,7 +21,7 @@ class DetaSessionStore extends session.Store {
             session: JSON.stringify(session)
         }
         try {
-            const insertedSession = await this.db.put(newSession, undefined, { expireIn: 3600 }); //will expire sessions in 1 hour
+            const insertedSession = await this.db.put(newSession, undefined, { expireIn: 18000 }); //will expire sessions in 5 hours
             callback();
         } catch (err) {
             callback(err);
