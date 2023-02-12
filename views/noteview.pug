@@ -3,38 +3,85 @@ extends layout
 
 block content
     div.container
-        //- if message.length
-        //-     h4.alert.alert-danger= message
         .row
             .col-sm-12.col-md-12
                 h1.text-center.login-title 
                 form.form-signin(method="post")
-                        //- .panel.panel-primary
-                        //-     .panel-heading
-                        //-         .panel-title Title
-                        //- br
-                        .panel.panel-primary
-                            .panel-heading
-                                .panel-title
-                                    input(type='text', value= note.title, required='', autofocus='off', name="title", style="background-color:inherit; color:inherit; border:none; padding:0px; outline:none; width:100%;")
-                            textarea.form-control.panel-body(required='',name="note" autocomplete="off", rows=35)= note.note
-                            .panel-footer(style="opacity:0.5;")= "Last Modified on " + note.timestamp
-                        //- br
-                        //- .panel.panel-primary
-                        //-     .panel-heading
-                        //-         .panel-title Modified
-                        //-     input.form-control.panel-body(type='text', value= note.timestamp, required='', autofocus='off', name="", readonly= "true")
-                        input(type='text', value= note.key, required='', autofocus='off', name="noteid", hidden="true")
-                        .col-sm-3 
-                            button.btn.btn-block.btn-primary(type="submit") Save Edits
-                        .col-sm-3                        
-                            a.btn.btn-block.btn-danger(href="./delete/"+note.key) Delete
-                        .col-sm-3                      
-                            a.btn.btn-block.btn-default(id="exportBtn", href="../export/"+note.key, target="_blank")
-                                svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 16 16' width='16' height='16')
-                                    path(d='M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z')
-                                    path(d='M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z')
-                                |  Export 
+                    .panel.panel-primary
+                        .panel-heading
+                            .panel-title
+                                input(type='text', value= note.title, required='' id="title" autofocus='off' name="title" style="background-color:inherit; color:inherit; border:none; padding:0px; outline:none; width:100%; font-size:larger;")    
+                        -if(Number(note.pno) <= Number(note.pages))
+                            textarea.form-control.panel-body(required='true' name="note" id="note" autocomplete="off", rows=33)= note.note
+                        -else
+                            textarea.form-control.panel-body(required='' name="note" autocomplete="off", rows=33)
+                            -note.pno += 1
 
-//- block pagescripts
-//-   script(src = "/javascripts/import/export.js")
+
+                        .panel-footer(style="opacity:0.5;")= "Last Modified on " + note.timestamp
+                        .pages.panel.panel-default(style="text-align:center; margin:0;")
+                            .panel-heading(style="display:flex; flex-direction:row; justify-content:space-around;")
+                                .pages
+                                    ul.pagination.pagination-sm(style="margin:0;")
+                                        li 
+                                            a(style="background-color:aqua") Pages
+                                        -for(let i=1;i<Number(note.pages)+1;i++){
+                                            -if(i===Number(note.pno)){
+                                                li.active
+                                                    a(href=note.parent+String(i))= i 
+                                            -}
+                                            -else{
+                                                li
+                                                    a(href=note.parent+String(i))= i
+
+                                            -}
+                                        -}
+                                .options
+                                    ul.pagination.pagination-sm(style="margin:0;")
+                                        li 
+                                            a(style="background-color:aqua") Page Options
+                                        li
+                                            -if(Number(note.pno) === Number(note.pages)){
+                                                a(id="newpage")
+                                                    i.fa.fa-file-text
+                                                    |   Add New Page
+                                            -}
+                                            -else{
+                                                a(id="newpage", hidden="true")
+                                                    i.fa.fa-file-text
+                                                    |   Add New Page
+                                            -}
+                                        li
+                                            -if(Number(note.pno) !== 1){
+                                                a(id="deletepage")
+                                                    i.fa.fa-ban
+                                                    |   Delete this page
+                                            -}
+                                            -else{
+                                                a(id="deletepage", hidden="true")
+                                                    i.fa.fa-ban
+                                                    |   Delete this page
+                                            -}  
+                                    
+                    input(type='text', value= note.key, required='', autofocus='off', name="noteid", hidden="true")
+                    input(type='text', value= note.parent, required='', autofocus='off', name="parentid", id="parentid", hidden="true")
+                    input(type='text', value= note.pno, required='', autofocus='off', name="pno", id="pno", hidden="true")
+                    input(type='text', value= note.pages, required='' autofocus='off' name="pages" id="pages" hidden="true")
+                    .col-sm-3 
+                        button.btn.btn-block.btn-primary(type="submit") 
+                            i.fa.fa-floppy-o
+                            |   Save Edits
+                    .col-sm-3                        
+                        a.btn.btn-block.btn-danger(href="./delete/"+note.parent)
+                            i.fa.fa-trash 
+                            |   Delete Note
+                    .col-sm-3                      
+                        a.btn.btn-block.btn-default(id="exportBtn" href="../export/"+note.parent, target="_blank")
+                            //- svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 16 16' width='16' height='16')
+                            //-     path(d='M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z')
+                            //-     path(d='M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z')
+                            i.fa.fa-download.fa-6
+                            |  Export Note
+
+block pagescripts
+    script(src="/javascripts/pageops.js")

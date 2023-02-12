@@ -19,6 +19,7 @@ const signupRouter = require('./routes/signup');
 const importRouter = require('./routes/import');
 const exportRouter = require('./routes/export');
 const staticRouter = require('./routes/static');
+const pageRouter = require('./routes/page');
 
 
 var app = express();
@@ -44,6 +45,7 @@ app.use('/signup',signupRouter);
 app.use('/import',importRouter);
 app.use('/export',exportRouter);
 app.use('/static',staticRouter);
+app.use('/page',pageRouter);
 app.use('/favicon.ico',(req,res,next)=>{
   res.redirect('/static/favicon.ico');
 });

@@ -9,3 +9,7 @@ a {
   color: #00B7FF;
 }
 
+#newpage:hover, #deletepage:hover{
+  cursor: pointer;
+}
+

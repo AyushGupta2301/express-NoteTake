@@ -1,4 +1,4 @@
-const NoteDataAccess = require('../data-access/NoteAccessDeta');
+const UserAccessDeta = require('../data-access/UserAccessDeta');
 
 module.exports = new class{
     async signup_post(req, res){
@@ -8,8 +8,9 @@ module.exports = new class{
             res.end();
         } 
         else{
-            await NoteDataAccess.createUser(signUpUser);
-            res.redirect('/login');
+            const insertStatus = await UserAccessDeta.create(signUpUser);
+            req.session.uid = insertStatus.key; 
+            res.redirect('/users/'+insertStatus.key);
         }  
     }
 

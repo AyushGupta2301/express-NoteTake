@@ -2,7 +2,7 @@
 const { Deta } = require('deta');
 require('dotenv').config();
 
-const deta = Deta(process.env.detaProjectKey);
+const deta = Deta("sdfd");
 const db = deta.Base("notesDB");
 
 // Test

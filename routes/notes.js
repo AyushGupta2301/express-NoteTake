@@ -14,9 +14,10 @@ router.use((req,res,next)=>{
   });
 
 router.get('/:rid',UserNoteCntrl.note_get);
-router.post('/:rid',UserNoteCntrl.note_update);
+router.post('/:rid',UserNoteCntrl.page_update);
 router.post('/',UserNoteCntrl.note_post);
 router.get('/',UserNoteCntrl.note_enter);
 router.get('/delete/:rid',UserNoteCntrl.note_delete);
+
 
 module.exports = router;

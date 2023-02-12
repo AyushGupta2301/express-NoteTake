@@ -1,4 +1,4 @@
-const NoteDataAccess = require('../data-access/NoteAccessDeta');
+const UserAccessDeta = require('../data-access/UserAccessDeta');
 
 module.exports = new class{
     async login_get(req,res){
@@ -12,11 +12,10 @@ module.exports = new class{
     async login_post(req,res){
         const queryUser = req.body;
         try{
-            const User = await NoteDataAccess.getunameUser(queryUser.username);
+            const User = await UserAccessDeta.get("username",queryUser.username);
             // console.log(User);
             if(User.length && User[0].password === queryUser.password){
                 req.session.uid = User[0].key;
-                
                 res.redirect('/users/'+ User[0].key);
                 res.end();
             }
