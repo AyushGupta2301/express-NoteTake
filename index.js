@@ -8,6 +8,7 @@ var path = require('path');
 const session = require('express-session');
 const DetaStore = require('./data-access/DetaSessionStore');
 const favicon = require('serve-favicon');
+const listeningPort = parseInt(process.env.PORT) || 8080;
 
 process.env.TZ = "Asia/Calcutta"
 
@@ -67,4 +68,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+app.listen(listeningPort, ()=>{
+  console.log(`Started Server Listening on Port ${listeningPort}`);
+})

@@ -33,7 +33,6 @@ class DetaSessionStore extends session.Store {
             const querySession = (await this.db.fetch({ key: sid }));
             if (querySession.count !== 0) {
                 const session = JSON.parse(querySession.items[0].session);
-
                 callback(null, session);
             }
             else {
